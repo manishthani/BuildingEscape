@@ -13,18 +13,22 @@ UOpenDoor::UOpenDoor()
 }
 
 
-// Called when the game starts
-void UOpenDoor::BeginPlay()
-{
-	Super::BeginPlay();
+void UOpenDoor::OpenDoor() {
 	// Get parent actor
 	AActor* Parent = GetOwner();
 
 	// Get a rotator
 	FRotator NewRotation(0.0f, 150.0f, 0.0f);
-	
+
 	Parent->SetActorRotation(NewRotation);
-	
+
+}
+
+
+// Called when the game starts
+void UOpenDoor::BeginPlay() {
+	Super::BeginPlay();	
+	ActorThatMoves = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 
@@ -33,6 +37,8 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (PressurePlate->IsOverlappingActor(ActorThatMoves)) {
+		OpenDoor();
+	}
 }
 
