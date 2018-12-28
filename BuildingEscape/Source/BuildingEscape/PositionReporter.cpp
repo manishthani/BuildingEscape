@@ -17,9 +17,15 @@ UPositionReporter::UPositionReporter()
 void UPositionReporter::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
 	
+
+	AActor* ParentActor = GetOwner();
+	FString ParentName = ParentActor->GetName();
+
+	FTransform ParentTransform = ParentActor->GetTransform();
+	FVector ParentTransformPosition = ParentTransform.GetLocation();
+	UE_LOG(LogTemp, Log, TEXT("PARENT NAME IS: %f %f %f"), ParentTransformPosition.X, ParentTransformPosition.Y, ParentTransformPosition.Z);
+
 }
 
 
