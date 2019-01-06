@@ -27,8 +27,8 @@ protected:
 	virtual void BeginPlay() override;
 
 private:	
-	UPROPERTY(VisibleAnywhere)
-	float OpenAngle = 90.0f;
+	UPROPERTY(EditAnywhere)
+	float OpenAngle;
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;

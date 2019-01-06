@@ -19,7 +19,7 @@ void UOpenDoor::OpenDoor() {
 	AActor* Parent = GetOwner();
 
 	// Get a rotator
-	FRotator NewRotation(0.0f, 150.0f, 0.0f);
+	FRotator NewRotation(0.0f, OpenAngle, 0.0f);
 
 	Parent->SetActorRotation(NewRotation);
 
