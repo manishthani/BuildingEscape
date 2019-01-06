@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
 #include "OpenDoor.h"
+#include "Engine/World.h"
+#include "Engine/Classes/GameFramework/PlayerController.h"
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
@@ -28,15 +29,21 @@ void UOpenDoor::OpenDoor() {
 // Called when the game starts
 void UOpenDoor::BeginPlay() {
 	Super::BeginPlay();	
-	ActorThatMoves = GetWorld()->GetFirstPlayerController()->GetPawn();
+	SetActorThatMoves();
 }
 
+void UOpenDoor::SetActorThatMoves() {
+	UWorld* World = GetWorld();
+	if (!World)
+		return;
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	ActorThatMoves = PlayerController->GetPawn();
+}
 
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
 	if (PressurePlate->IsOverlappingActor(ActorThatMoves)) {
 		OpenDoor();
 	}
