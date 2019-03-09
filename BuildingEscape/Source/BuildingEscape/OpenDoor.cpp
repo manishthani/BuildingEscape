@@ -35,7 +35,7 @@ void UOpenDoor::SetActorThatMoves() {
 	UWorld* World = GetWorld();
 	if (!World)
 		return;
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	APlayerController* PlayerController = World->GetFirstPlayerController();
 	ActorThatMoves = PlayerController->GetPawn();
 }
 
